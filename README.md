@@ -1,9 +1,10 @@
 X3: Albion Prelude Complex calculator
 =====================================
 
-Complex calculator for the X3 Albion Prelude game.
+Complex calculator for the X3 Albion Prelude game located at https://pulkin.github.io/x3ap-complex-calculator/.
 
 The original source files were copied from https://poisonedparanid.com/storage/mirrors/x3apocc/.
+Authors can be found [here](https://forum.egosoft.com/viewtopic.php?t=197763).
 
 My complexes:
 
