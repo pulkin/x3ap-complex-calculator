@@ -165,7 +165,7 @@ function setSun(){
 
 function setFactory(whichsub){
 	if(rowsadded==0){
-		
+
 		var chosenfactory = theform.factory[whichsub].value;
 		var selboxRace = theform.race[whichsub];
 		var selboxSize = theform.size[whichsub];
@@ -190,9 +190,9 @@ function setFactory(whichsub){
 				}
 			}
 		}
-	
+
 	setYieldField(whichsub,disabledyield);
-	
+
 	if(loadFromQuery==false){update();}
 	}
 }
@@ -229,7 +229,7 @@ function setYieldField(whichsub,yieldtype){
 
 function setSize(whichsub){
 	if(rowsadded==0){
-	
+
 	var chosenrace = theform.race[whichsub].value;
 	var chosenfactory = theform.factory[whichsub].value;
 	var chosensize = theform.size[whichsub].value;
@@ -250,12 +250,12 @@ function setSize(whichsub){
 		setYieldField(whichsub,disabledyield);
 	}
 	if(loadFromQuery==false){update();}
-	}	
+	}
 }
 
 function setRace(whichsub){
 	if(rowsadded==0){
-	
+
 	var chosenfactory = theform.factory[whichsub].value;
 	var chosenrace = theform.race[whichsub].value;
 	theform.test[whichsub].value = chosenrace;
@@ -284,30 +284,24 @@ function setRace(whichsub){
 	}
 }
 
-function coloredWaresMade(value1,value2){
-	if(value1 > value2){
-		return 'green';
+function coloredWares(value1,value2){
+	if (value1 > value2) {
+		return '#99FF99';
 	}
-	else{
-		return 'black';
-	}
-}
-
-function coloredWaresUsed(value1,value2){
-	if(value1 > value2){
-		return 'red';
-	}
-	else{
-		return 'black';
+    else if (value1 == value2) {
+        return 'white';
+    }
+	else {
+		return '#FF9999';
 	}
 }
 
 function update(){
 	if(rowsadded==0){
 	refreshStore();
-	
+
 	stationcost = 0; factorycount = 0; cckCost = 0;
-	result = "<table><tr><th>Ware</th><th>Produced</th><th>Used</th><th>Buy</th><th>Sell</th><th>Leak</th></tr>";
+	result = "<table align='right'><tr><th>Ware</th><th>Produced</th><th>Used</th><th>Balance</th><th>Buy</th><th>Sell</th><th>Leak</th></tr>";
 	for(i=0; i < theform.factory.length; i++){
 		var chosenrace = document.myform.race[i].value; var chosenfactory = theform.factory[i].value; var chosensize = theform.size[i].value;
 		if(chosenrace != '' && chosenfactory != '' && chosensize !=''){
@@ -369,14 +363,17 @@ function update(){
 				stored[product].cycle = cycle;
 				stored[product].active = true;
 				factorycount += stationqty;
-			}				
+			}
 		}
 	}
 	for(k = 0; k < warez.length; k++){
 		if(stored[warez[k]].active){
-			result += "<tr><td onmouseover='showPrices(event,\""+warez[k]+"\");' onmouseout='hidePrices();'><input type='hidden' name='storedware' value='" + warez[k] + "'>" + warez[warez[k]].name + "</td>";
-			result += "<td><font color='" + coloredWaresMade(stored[warez[k]].made,stored[warez[k]].used) + "'>" + Math.round(stored[warez[k]].made*100)/100 + "</font></td>";
-			result += "<td><font color='" + coloredWaresUsed(stored[warez[k]].used,stored[warez[k]].made) + "'>" + Math.round(stored[warez[k]].used*100)/100 + "</font></td>";
+            m = stored[warez[k]].made
+            u = stored[warez[k]].used
+			result += "<tr bgcolor='" + coloredWares(m, u) + "'><td onmouseover='showPrices(event,\""+warez[k]+"\");' onmouseout='hidePrices();'><input type='hidden' name='storedware' value='" + warez[k] + "'>" + warez[warez[k]].name + "</td>";
+			result += "<td>" + Math.round(stored[warez[k]].made*100)/100 + "</td>";
+			result += "<td>" + Math.round(stored[warez[k]].used*100)/100 + "</td>";
+            result += "<td>" + Math.round((stored[warez[k]].made - stored[warez[k]].used)*100)/100 + "</td>";
 			result += "<td><input type='text' size='8' name='storedbuy' onchange='checkbuy(this,\"" + warez[k] + "\");' value='" + stored[warez[k]].buy + "'></td>";
 			result += "<td><input type='text' size='8' name='storedsell' onchange='checksell(this,\"" + warez[k] + "\");' value='" + stored[warez[k]].sell + "'></td>";
 			result += "<td><input type='checkbox' name='leak' onchange='setStore();'";
@@ -461,7 +458,7 @@ function updEndProd(changed){
 		endvalue = ttlcost /  eval(endprodbuyprice * endproductmade + netprof) * endproductmade;
 		if(!endvalue | endvalue <= 0){
 			document.getElementById('endresult').innerHTML = "The cost of this factory loop and required resources will always be more than buying available " + warez[theform.endproduct[checked].value].name + "s.";
-		} else { 
+		} else {
 		document.getElementById('endresult').innerHTML = "The cost of this factory loop and required resources is equal to buying " + (Math.round(endvalue*100))/100 + " " + warez[theform.endproduct[checked].value].name + "s.";
 		}
 	} else {
@@ -574,13 +571,13 @@ function factSelbox(){
 		}
 		facList.push([ factories[factories[i]].name, factories[i] ]);
 	}
-	
+
 	theform = document.myform;
 	for (i = 0; i < theform.factory.length; i++ ){
 		var selbox = theform.factory[i];
 		for ( j = 0; j < facList.length; j++ ){
 			selbox.options[j+1] = new Option(facList[j][0], facList[j][1]);
-		}		
+		}
 		theform.qty[i].value = 0;
 		theform.test[i].value = '';
 	}
@@ -607,11 +604,11 @@ function showPrices(e,whichware){
 
 function hidePrices(){
 	var thediv = document.getElementById('wareprices');
-	thediv.style.display = 'none';	
+	thediv.style.display = 'none';
 }
 
 function addRow(){
-	
+
 	var tbl = document.getElementById('formtbl');
 	var tblBody = tbl.firstChild;
 	var lastRow = tbl.rows.length;
@@ -799,7 +796,7 @@ function ReadQuery() {
 		else if(items[0] == 'om' | items[0] == 'sim'){
 			setYieldField(i,mineyield(i));
 			document.getElementsByName('yield')[i].value = items[4];
-		}	
+		}
 	}
 	loadFromQuery = false;
 	update();
@@ -831,12 +828,12 @@ function ReadQuery() {
 			}
 		}
 	}
-	
+
 	if(args.sector){
 		theform.sunselect.value = args.sector;
 		setSun();
 	}
-	
+
 	calculon();
 }
 
@@ -859,15 +856,15 @@ function GetTinyURL(success) {
     // Define a new global function:
     // (which will run the passed 'success' function:
     window[ud]= function(o){ success&&success(o.tinyurl); };
- 
+
     // Append new SCRIPT element to BODY with SRC of API:
     document.getElementsByTagName('body')[0].appendChild((function(){
- 
+
         var s = document.createElement('script');
         s.type = 'text/javascript';
         s.src = API + encodeURIComponent(document.myform.url.value) + '&callback=' + ud;
         return s;
- 
+
     })());
 }
 
@@ -885,7 +882,7 @@ function setUSNumberFormat(theNumber){
 	if(theNumString.length <= 3){ return theNumber } else { var resultUS = setUSNumberFormat(theNumString.substring(0,theNumString.length-3)) + ',' + theNumString.substring(theNumString.length-3); }
 	if(theNumArray[1]){
 		if(theNumArray[1].length == 1){ theNumArray[1] += '0'; }
-		return resultUS += '.' + theNumArray[1] 
+		return resultUS += '.' + theNumArray[1]
 	} else { return sign + resultUS }
 }
 
@@ -911,7 +908,7 @@ function loadScript(url, callback){
     var script = document.createElement("script")
     script.type = "text/javascript";
 
-    if (script.readyState){  
+    if (script.readyState){
         script.onreadystatechange = function(){
             if (script.readyState == "loaded" ||
                     script.readyState == "complete"){
@@ -919,7 +916,7 @@ function loadScript(url, callback){
                 callback();
             }
         };
-    } else { 
+    } else {
         script.onload = function(){
             callback();
         };
