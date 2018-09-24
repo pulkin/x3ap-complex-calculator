@@ -1,0 +1,54 @@
+body { font: .9em normal Arial, sans-serif; background: #8899aa; }
+table, boxd { border: 1px solid grey; padding: 2px; background: #ccddee; }
+.boxhd { background: grey; padding: 2px; text-indent: 1em; font: 1em bold Arial, sans-serif; }
+#wareprices {position: absolute; display: none; border: 1px solid black; padding: 2px; background: orange; font-size: .75em; }
+th, td { font-size: .9em; font-family: Arial, sans-serif; padding: 3px; }
+input, select { font-size: .9em; font-family: Arial, sans-serif; }
+th { background: #aabbcc; margin: 1px; text-align: left; }
+td.header { background: #aabbcc; margin: 1px; padding: 3px; text-align: left; font-weight: bold; }
+tr.ship { background: #aaddee; }
+tr.missile { background: #ccddcc; }
+tr.pirate { background: #aaddee; }
+tr.credits { background: #ccbbcc; }
+tr.ware { background: #bbbbcc; }
+tr.argon { background: #aaddee; }
+tr.boron { background: #ccddcc; }
+tr.goner { background: #aaddee; }
+tr.paranid { background: #ccbbcc; }
+tr.pirate { background: #bbbbcc; }
+tr.split { background: #ddaabb; }
+tr.teladi { background: #ddeeaa; }
+tr.terran { background: #aabbee; }
+tr.xenon { background: #aa99cc; }
+tr.yaki { background: #ccccbb; }
+
+div.sector { padding: 2px; text-align: center; border: 2px black solid; width: 70px; height: 40px; border-radius: 6px; font-size: 8px; }
+div.argon { background: #aaddee; }
+div.boron { background: #ccddcc; }
+div.goner { background: #aaddee; }
+div.paranid { background: #ccbbcc; }
+div.pirates { background: #bbbbbb; }
+div.split { background: #ddaabb; }
+div.teladi { background: #ddeeaa; }
+div.terran { background: #aabbee; }
+div.xenon { background: #aa99cc; }
+div.yaki { background: #ccccbb; }
+div#menu { font-size: .8em; background: #778899; position: fixed; left: 0px; top: 0px; width: 100%; padding: 3px; }
+div#menu a:hover { background: #99aabb; }
+
+*:focus { background: #ffffaa; }
+.footer { border: 1px solid grey; padding: 3px; width: 700px; margin: 1px 0; }
+#rightcol { border: 1px solid grey; padding: 3px; background: #ddffdd; margin: 1px; }
+
+#btmbnr { position: fixed; left: 0px; padding: 5px; height: 31px; background-color: #778899; width: 100%; font: bold .8em Verdana, sans-serif; }
+
+.alignleft { float: left; padding-right: 31px; }
+.alignright { float: right; }
+/*
+     FILE ARCHIVED ON 07:05:02 Jun 13, 2015 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 19:05:37 Aug 28, 2017.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
